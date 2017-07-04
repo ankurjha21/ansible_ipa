@@ -1,0 +1,14 @@
+---
+
+ - hosts: servers
+ 
+   become: yes
+   tasks:
+   - name: ipa server
+     yum: name=ipa-server state=present
+   - name: bind-dyndb-ldap
+     yum: name=bind-dyndb-ldap state=present
+   - name: bind
+     yum: name=bind state=present  
+   - name: Installing ipa-server-install
+     command: "ipa-server-install -U  --hostname=chefwork.ankur.local -r ANKUR.LOCAL -n ankur.local -p 'wellcome' -a 'wellcome' --forwarder=8.8.8.8 --setup-dns -U"
